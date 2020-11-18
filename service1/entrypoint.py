@@ -6,13 +6,9 @@ import hashlib
 inp = sys.stdin.readlines()
 hash_func = inp[0].strip()
 message = '\n'.join(inp[1:]).strip()
-
 h = hashlib.new(hash_func)
 h.update(str.encode(message))
-
 print (h.hexdigest())
-
-
 class SimpleHasher(jrpc.service.SocketObject):
     @jrpc.service.method
     def hashIt(self, content):
@@ -20,7 +16,6 @@ class SimpleHasher(jrpc.service.SocketObject):
         h.update(str.encode(content))
         print(h.hexdigest())
         return h.hexdigest()
-
 if __name__ == "__main__":
     print("Starting server")
     server = SimpleHasher(50001)
@@ -40,6 +35,8 @@ def index():
     print(req)
     response = hashIt(req)
     hashed = response[:32]
+    print("jesammm")
+    print(hashed)
     return Response(hashed)
 
 if __name__ == "__main__":
