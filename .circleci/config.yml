@@ -8,6 +8,9 @@ jobs:
     working_directory: ~/repo
     docker:
       - image: circleci/python:3.9.0b5
+        auth:
+          username: jurezic
+          password: S37aXzdYXUagqDS
     steps:
       - checkout
       - run:
