@@ -1,6 +1,6 @@
 FROM python:latest
 
-COPY ./Service2.py .
+COPY ./entrypoint2.py .
 COPY requirements.txt .
 
 RUN pip install -r requirements.txt
