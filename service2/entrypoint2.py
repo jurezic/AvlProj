@@ -1,6 +1,6 @@
 import requests
-import urllib.request as request
-import jrpc
+import urllib.request as requestUrl
+from jsonrpcclient import request
 import sys
 """
 SERVICE1_URL = "http://service.example.com:8080"
@@ -10,13 +10,13 @@ data = ["md5", message]
 
 print(requests.post(SERVICE1_URL, data="\n".join(data)))
 """
-r = request.urlopen('https://www.python.org')
+r = requestUrl.urlopen('https://www.python.org')
 r = r.read()
 print(r)
 
 def downloadWebsite(url):
     try:
-        content = request.urlopen(url)
+        content = requestUrl.urlopen(url)
         content = content.read()
         return content
     except:
@@ -26,5 +26,7 @@ if __name__ == "__main__":
     url = input("Please enter the website url -> ")
     content = downloadWebsite(url)
     print("Sending the content to the hashing server...")
-    hashing_server = jrpc.service.SocketProxy(50001)
-    print(hashing_server.echo(content))
+    req = request("http://localhost:5000/", "ping", data=str(content))
+    print(req.data)
+    print(req.data.result)
+    print(request("http://localhost:5000/", "ping", data=str(content)).data.result)
