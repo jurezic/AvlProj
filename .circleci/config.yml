@@ -13,6 +13,11 @@ jobs:
       - run:
          name: install pytest
          command: pip install pytest
+      - run:
+          name: run Unit tests
+          command: |
+            cd test
+            pytest
       - python/load-cache
       - python/install-deps
       - python/save-cache
