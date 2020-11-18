@@ -1,5 +1,5 @@
 from flask import Flask, request, Response
-from jsonrpcserver import method, dispatch
+from jsonrpcserver import method
 import sys
 import hashlib
 """
@@ -28,11 +28,6 @@ if __name__ == "__main__":
 """
 
 app = Flask(__name__)
-"""
-@method
-def ping():
-    return "pong"
-"""
 @method
 def ping(content):
     h = hashlib.new("md5")
@@ -44,8 +39,6 @@ def index():
     req = request.get_data().decode()
     print(req)
     response = ping(req)
-    print(type(response))
-    print(response[:32])
     hashed = response[:32]
     return Response(hashed)
 

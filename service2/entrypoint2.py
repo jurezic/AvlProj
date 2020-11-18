@@ -26,7 +26,4 @@ if __name__ == "__main__":
     url = input("Please enter the website url -> ")
     content = downloadWebsite(url)
     print("Sending the content to the hashing server...")
-    req = request("http://localhost:5000/", "ping", data=str(content))
-    print(req.data)
-    print(req.data.result)
     print(request("http://localhost:5000/", "ping", data=str(content)).data.result)
