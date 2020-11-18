@@ -11,13 +11,8 @@ jobs:
     steps:
       - checkout
       - run:
-         name: install pytest
+         name: run Unit tests
          command: pip install pytest
-      - run:
-          name: run Unit tests
-          command: |
-            cd test
-            python test.py
       - python/load-cache
       - python/install-deps
       - python/save-cache
