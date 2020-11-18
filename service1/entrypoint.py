@@ -29,7 +29,7 @@ if __name__ == "__main__":
 
 app = Flask(__name__)
 @method
-def ping(content):
+def hashIt(content):
     h = hashlib.new("md5")
     h.update(str.encode(content))
     return str(h.hexdigest())
@@ -38,7 +38,7 @@ def ping(content):
 def index():
     req = request.get_data().decode()
     print(req)
-    response = ping(req)
+    response = hashIt(req)
     hashed = response[:32]
     return Response(hashed)
 
