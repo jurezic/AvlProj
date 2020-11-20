@@ -32,10 +32,8 @@ def hashIt(content):
 @app.route("/", methods=["POST"])
 def index():
     req = request.get_data().decode()
-    print(req)
     response = hashIt(req)
     hashed = response[:32]
-    print("jesammm")
     print(hashed)
     return Response(hashed)
 

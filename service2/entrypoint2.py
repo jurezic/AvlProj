@@ -28,4 +28,5 @@ if __name__ == "__main__":
     print(url)
     content = downloadWebsite(url)
     print("Sending the content to the hashing server...")
+    print('Received hashed content -> ')
     print(request("http://localhost:5000/", "ping", data=str(content)).data.result)
